@@ -1,0 +1,72 @@
+<html>
+
+<head>
+  <title>Administrator's page</title>
+  <link rel="stylesheet" href="../stylesheets/stylesheet.css">
+  <link rel="stylesheet"
+    href="/libs/bootstrap.min.css">
+  <script type="text/javascript"
+    src="/libs/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="../libs/bootstrap.css">
+  <script src="../libs/jquery.min.js"></script>
+  <script src="../libs/bootstrap.bundle.js"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <h3 class="navbar-brnd">Welcome </h3>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <ul class="navbar-nav">
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/password/change">Change Password</a>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-light"><a class="nav-link" href="/employee/logout">Log Out</a></button>
+        </li>
+      </ul>
+
+    </div>
+  </nav>
+
+
+  <div class="adminhead jumbotron text-center">
+    <h1 class="display-4"><em>Welcome To</em>
+      <p>Administrator</p>
+    </h1>
+  </div>
+
+  <%- include("partials/messages") -%>
+  <div class="row justify-content-around">
+    <div class="col-sm-3">
+      <div class="card shadow">
+        <img class="card-img rounded-circle member" src="/../images/profile.png">
+        <div class="card-body">
+          <div class="card-text">
+            <h4><a href='/'>Go to staffs' database page</a></h4>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="col-sm-3">
+      <div class="card shadow">
+        <img class="card-img rounded-circle member" src="/../images/profile.png">
+        <div class="card-body">
+          <div class="card-text">
+            <h4><a href='/studentDatabase'>Go to students' database page</a></h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

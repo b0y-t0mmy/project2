@@ -1,0 +1,14 @@
+<html>
+    <head>
+        <title>Profile</title>
+    </head>
+    <body>
+        <% if(currentUser) { %>
+            <h4 class = "heading text-danger">Your Profile:</h4>
+                <p>Name : <%= currentUser.username %></p>
+                <p>Designation : <%= currentUser.designation %></p>
+                <p>Salary : Ghc<%= currentUser.salary %></p>
+      
+           <% } %>
+    </body>
+</html>

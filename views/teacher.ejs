@@ -1,0 +1,89 @@
+<html>
+
+<head>
+  <title>Teacher's Page</title>
+  <link rel="stylesheet"
+  href="/libs/bootstrap.min.css">
+<script type="text/javascript"
+  src="/libs/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="../libs/bootstrap.css">
+  <link rel="stylesheet" href="../stylesheets/stylesheet.css">
+  <link rel="stylesheet" href="../stylesheets/teacherStylesheet.css">
+  <link rel="stylesheet" href="../libs/dataTables.bootstrap4.min.css">
+
+  <script src="../libs/jquery.min.js"></script>
+  <script src="../libs/jquery.dataTables.min.js"></script>
+  <script src="../libs/dataTables.bootstrap4.min.js"></script>
+  <script src="../libs/bootstrap.bundle.js"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <h4 class="navbar-brand">Welcome </h4>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href = "/password/change">Change Password</a>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-light"><a class="nav-link" href="/logout">Log Out</a></button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+    <div class="row">
+      <div class="pane col-lg-2 col-sm-12">
+        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical" data-spy="scroll" data-target="#v-pills-tabContent" data-offset="0">
+          <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"
+            aria-controls="v-pills-home" aria-selected="true">Home</a>
+          <a class="nav-link" id="v-pills-names-tab" data-toggle="pill" href="#v-pills-names" role="tab"
+            aria-controls="v-pills-names" aria-selected="false">Names of total students</a>
+          <a class="nav-link" id="v-pills-work-tab" data-toggle="pill" href="#v-pills-work" role="tab"
+            aria-controls="v-pills-work" aria-selected="false">Manage your students' work</a>
+          <a class="nav-link" id="v-pills-resources-tab" data-toggle="pill" href="#v-pills-resources" role="tab"
+            aria-controls="v-pills-resources" aria-selected="false">Upload resources for your students</a>
+          <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab"
+            aria-controls="v-pills-profile" aria-selected="false">View profile</a>
+        </div>
+      </div>
+       <% if(currentUser){ %>
+      <div class="panel col-lg-10 col-sm-12">
+        <div class="tab-content" id="v-pills-tabContent">
+          <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+            <h1 class="welcome display-3 text-center"><em>You are welcome <%= currentUser.username%> to Your Page. </em>
+              <p>What would you like to do today</p>
+            </h1>
+          </div>
+          <div class="tab-pane fade" id="v-pills-names" role="tabpanel" aria-labelledby="v-pills-names-tab">
+            
+          </div>
+          <div class="tab-pane fade" id="v-pills-work" role="tabpanel" aria-labelledby="v-pills-work-tab">...</div>
+          <div class="tab-pane fade" id="v-pills-resources" role="tabpanel" aria-labelledby="v-pills-resources-tab">
+ 
+          </div>
+          <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+            <% if(currentUser) { %>
+              <h3 class = "heading text-danger text-center">Your Profile:</h3>
+            </br>
+                  <p>Name : <%= currentUser.username %></p>
+                  <p>Designation : <%= currentUser.designation %></p>
+                  <p>Salary : Ghc<%= currentUser.salary %></p>
+        
+             <% } %>
+              
+  
+          </div>
+        </div>
+      </div>
+    </div>
+        <% } %>
+</body>
+
+</html>

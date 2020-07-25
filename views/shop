@@ -1,0 +1,122 @@
+//get routes starts here
+
+
+router.get('/studentDatabase', (req, res) => {
+    student.find({})
+        .then(students => {
+            res.render('studentDatabase', { students: students });
+        })
+        .catch(err => {
+            req.flash('error_msg', 'ERROR :' + err)
+            res.redirect('/');
+        })
+});
+
+router.get("/employee/studentAdd", (req, res) => {
+    res.render("studentAdd")
+});
+
+router.get('/employee/studentSearch', (req, res) => {
+    res.render('studentSearch', {student:""});
+});
+
+router.get('/student', (req,res) => {
+    let searchQuery = { name : req.query.name };
+
+    student.findOne(searchQuery)
+     .then(student => {
+         res.render('studentSearch', {student : student});
+     })
+     .catch(err => {
+        req.flash('error_msg', 'ERROR :' + err)
+        res.redirect('/studentDatabase');
+     })
+})
+
+router.get('/studentEdit/:id', (req, res) => {
+    let searchQuery = {_id : req.params.id};
+    student.findOne(searchQuery)
+     .then(student => {
+         res.render('studentEdit', {student : student});
+     })
+     .catch(err => {
+        req.flash('error_msg', 'ERROR :' + err)
+        res.redirect('/studentDatabase');
+     });
+    
+});
+
+router.get("/employee/studentPage", (req,res) => {
+    res.render("studentPage")
+});
+
+router.get("/employee/checkResults", (req,res) => {
+    res.render("checkResults")
+});
+
+//get routes ends here
+
+//post routes starts here
+
+router.post('/employee/studentAdd', (req, res) => {
+     
+let newStudent = {
+    username: req.body.username,
+    studentId: req.body.studentId,
+    age: req.body.age,
+    class: req.body.class,
+    gender: req.body.gender,
+    email : req.body.email
+};
+
+student.register(newStudent, req.body.password)
+.then(student => {
+    req.flash('success_msg', 'Student Data Added To Database Sucessfully.')
+    res.redirect('/studentDatabase');
+})
+.catch(err => {
+    req.flash('error_msg', 'ERROR :' + err)
+    res.redirect('/studentDatabase');
+})
+passport.authenticate('local');
+});
+//post routes ends here
+
+//put routes starts here
+router.put('/studentEdit/:id', (req,res) => {
+    let searchQuery = {_id : req.params.id};
+
+    student.updateOne(searchQuery, {$set : {
+        username : req.body.username,
+        studentId: req.body.studentId,
+        age: req.body.age,
+        class: req.body.class,
+        gender: req.body.gender
+    }})
+    .then(student => {
+        req.flash('success_msg', 'Student Data Updated Sucessfully.')
+        res.redirect('/studentDatabase');
+    })
+    .catch(err => {
+        req.flash('error_msg', 'ERROR :' + err)
+        res.redirect('/studentDatabase');
+    })
+});
+
+//put routes ends here
+
+//delete routes starts here
+router.delete('/studentDelete/:id', (req,res) => {
+    let searchQuery = {_id : req.params.id};
+
+    student.deleteOne(searchQuery)
+    .then(student => {
+        req.flash('success_msg', 'Student Data Deleted Sucessfully.')
+        res.redirect('/studentDatabase');
+    })
+    .catch(err => {
+        req.flash('error_msg', 'ERROR :' + err)
+        res.redirect('/studentDatabase');
+    });
+});
+//delete routes ends here

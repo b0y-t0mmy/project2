@@ -1,0 +1,25 @@
+<%- include("partials/header") -%>
+
+        <form action = '/edit/<%= employee.id %>?_method=PUT' method = 'POST'>
+            
+            <div class = "container justify-content-center">
+
+              <h1>Update Employee Data</h1>
+            </br>
+            </br>
+              <input type = "hidden" name = "_method" value="PUT">
+              <input type="text" class="form-control" value = "<%= employee.user.username %>" name="username" placeholder="Employee Name">
+            </br>
+              <input type="text" class="form-control" value = "<%= employee.designation %>" name="designation" placeholder="Employee Designation">
+            </br>
+              <input type="text" class="form-control" value = "<%= employee.salary %>" name="salary" placeholder="Employee Salary">
+            </br>
+            <input type="text" class="form-control" value = "<%= employee.class %>" name ="class" placeholder="Class">
+            </br>
+            <input type="text" class="form-control" value = "<%= employee.user.email %>" name ="email" placeholder="Email">
+          </br>
+                <button type = "submit" class = "btn btn-success">Update Employer</button>
+            </div>
+          </form>
+
+      <%- include("partials/footer") -%>

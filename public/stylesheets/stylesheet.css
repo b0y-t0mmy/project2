@@ -1,0 +1,115 @@
+.container2{
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.container{
+    margin-top: 20px;
+    width : 60%;
+}
+
+
+
+
+#loginh1{
+    margin-top: 5%;
+    margin-bottom: 50px;
+}
+
+body{
+    background-color: beige;
+}
+
+.form{
+    border : solid black 1px;
+    border-radius: 5px;
+    padding : 20px;
+    border-width: 40%;
+}
+
+a{
+    text-decoration: none;
+    
+}
+
+
+
+.footernavbar{
+    border : 1px solid white;
+    padding : 10px;
+    border-radius: 2px;
+    background-color: rgb(132, 247, 247);
+    height : 100px;
+}
+
+.footernavbar li{
+    float : left;
+    width : 25%;
+}
+
+.footernavbar ul{
+    list-style : none;
+}
+.navbar-nav{
+    
+    width : 25%;
+}
+
+.header{
+    background-image: linear-gradient(to bottom, rgba(14, 148, 200, 0.37),rgb(12, 1655, 179)), url('/../images/apple.jpg');
+    background-size: cover;
+}
+
+#form{
+    margin-bottom: 20%;
+}
+
+#form .container{
+    padding-right: 20%;
+    padding-left: 20%;
+}
+
+#button{
+    padding-right: 200%;
+}
+
+#footer{
+    border : 1px solid white;
+    background-color: rgb(132, 247, 247);
+}
+
+#footer h5{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.images{
+    width : 300px;
+    height: 304px;
+    box-shadow : 5px 5px 5px #999;
+    margin-bottom: 20px;
+}
+
+.navbar{
+    background-color: rgb(6, 41, 41);
+}
+
+.member{
+    height: 150;
+    margin-bottom: 40px;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.adminhead{
+    background-color: royalblue;
+}
+
+
+
+
+
+
+
+
