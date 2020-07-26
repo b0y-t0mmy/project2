@@ -266,6 +266,7 @@ let newUser = {
 //put routes starts here
 
 router.put('/edit/:id', (req, res) => {
+
     let searchQuery = { _id: req.params.id };
 
     Employee.updateOne(searchQuery, {
@@ -274,25 +275,25 @@ router.put('/edit/:id', (req, res) => {
             salary: req.body.salary,
             class : req.body.class
         }
-}).then(result => {
-        
-    let employee = Employee.findOne(id).populate('user').then(employee => {
-      User.updateOne({_id: employee.user.id}, {username: req.body.username, email: req.body.email}, (err, user) => {
-        if(err) {
-          req.flash('error_msg', 'ERROR :' + err)
-          res.redirect('/edit/'+req.params.id);
-        }
+    }).then(result => {
+            
+        let employee = Employee.findOne(searchQuery).populate('user').then(employee => {
+          User.updateOne({_id: employee.user.id}, {username: req.body.username, email: req.body.email}, (err, user) => {
+            if(err) {
+              req.flash('error_msg', 'ERROR :' + err)
+              res.redirect('/edit/'+req.params.id);
+            }
 
-            req.flash('success_msg', 'Employee Data Updated Sucessfully.')
-            res.redirect('/');
+                req.flash('success_msg', 'Employee Data Updated Sucessfully.')
+                res.redirect('/');
+            })
         })
-    })
 
-        }).catch(err => {
-            console.log(err)
-            req.flash('error_msg', 'ERROR :' + err)
-            res.redirect('/'+req.params.id);
-        })
+            }).catch(err => {
+                console.log(err)
+                req.flash('error_msg', 'ERROR :' + err)
+                res.redirect('/edit/'+req.params.id);
+            })
 });
 
 //put routes ends here
@@ -411,7 +412,7 @@ router.get('/student', (req,res) => {
 
 router.get('/studentEdit/:id', (req, res) => {
     let searchQuery = {_id : req.params.id};
-    student.findOne(searchQuery)
+    student.findOne(searchQuery).populate('user')
      .then(student => {
          res.render('studentEdit', {student : student});
      })
@@ -482,30 +483,36 @@ router.put('/studentEdit/:id', (req,res) => {
 
     student.updateOne(searchQuery, {
         $set : {
-        studentsId: req.body.studentId,
+        studentsId: req.body.studentsId,
         age: req.body.age,
         class: req.body.class,
         gender: req.body.gender
     }
 }).then(result => {
+
+  req.flash('success_msg', 'Student Data Updated Sucessfully.')
+  res.redirect('/studentDatabase');
         
-    let student = student.findOne(id).populate('user').then(student => {
-      User.updateOne({_id: student.user.id}, {username: req.body.username, email: req.body.email}, (err, user) => {
-        if(err) {
-          req.flash('error_msg', 'ERROR :' + err)
-          res.redirect('/studentEdit/'+req.params.id);
-        }
+    // let std = student.update(searchQuery).populate('user').then(student => {
+    //   User.updateOne({_id: student.user.id}, {username: req.body.name, email: req.body.}, (err, user) => {
+    //     if(err) {
+    //       console.log(err)
+    //       req.flash('error_msg', 'ERROR :' + err)
+    //       res.redirect('/studentEdit/'+req.params.id);
+    //     }
 
-            req.flash('success_msg', 'Student Data Updated Sucessfully.')
-            res.redirect('/studentDatabase');
-        })
-    })
+    //         req.flash('success_msg', 'Student Data Updated Sucessfully.')
+    //         res.redirect('/studentDatabase');
+    //     })
+    // })
 
-        }).catch(err => {
-            console.log(err)
-            req.flash('error_msg', 'ERROR :' + err)
-            res.redirect('/studentDatabase'+req.params.id);
-        })
+    //     }).catch(err => {
+    //         console.log(err)
+    //         req.flash('error_msg', 'ERROR :' + err)
+    //         res.redirect('/studentEdit/'+req.params.id);
+    //     })
+  });
+
 });
 
 //put routes ends here
@@ -514,7 +521,7 @@ router.put('/studentEdit/:id', (req,res) => {
 router.delete('/studentDelete/:id', (req,res) => {
     let searchQuery = {_id : req.params.id};
 
-    student.deleteOne(searchQuery).populate('user')
+    student.findOne(searchQuery).populate('user')
     .then(student => {
 
         deleteStu(student.id, student.user.id)

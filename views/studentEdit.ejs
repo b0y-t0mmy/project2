@@ -8,32 +8,32 @@
             </br>
             </br>
               <input type = "hidden" name = "_method" value="PUT">
-              <input type="text" class="form-control" value = "<% student.name %>" name="name" placeholder="Student's Name">
+              <input type="text" class="form-control" value = "<%= student.user.username %>" name="name" placeholder="Student's Name">
             </br>
-              <input type="text" class="form-control" value = "<% student.studentId %>" name="studentId" placeholder="Student's ID">
+              <input type="text" class="form-control" value = "<%= student.studentsId %>" name="studentsId" placeholder="Student's ID">
             </br>
-              <input type="text" class="form-control" value = "<% student.age %>" name="age" placeholder="Student's Age">
+              <input type="text" class="form-control" value = "<%= student.age %>" name="age" placeholder="Student's Age">
             </br>
             <select name = "class" class="form-control">
               <option selected>Choose class...</option>
-              <option>Nursery</option>
-              <option>Kindergatern One</option>
-              <option>Kindergatern Two</option>
-              <option>Class One</option>
-              <option>Class Two</option>
-              <option>Class Three</option>
-              <option>Class Four</option>
-              <option>Class Five</option>
-              <option>Class Six</option>
-              <option>Form one</option>
-              <option>Form Two</option>
-              <option>Form Three</option>
+              <option <%= student.class == 'Nursery' ? 'selected': '' %> >Nursery</option>
+              <option <%= student.class == 'Kindergatern One' ? 'selected': '' %> >Kindergatern One</option>
+              <option <%= student.class == 'Kindergatern Two' ? 'selected': '' %> >Kindergatern Two</option>
+              <option <%= student.class == 'Class One' ? 'selected': '' %> >Class  One</option>
+              <option <%= student.class == 'Class Two' ? 'selected': '' %> >Class Two</option>
+              <option <%= student.class == 'Class Three' ? 'selected': '' %> >Class Three</option>
+              <option <%= student.class == 'Class Four' ? 'selected': '' %> >Class Four</option>
+              <option <%= student.class == 'Class Five' ? 'selected': '' %> >Class Five</option>
+              <option <%= student.class == 'Class Six' ? 'selected': '' %> >Class Six</option>
+              <option <%= student.class == 'Form One' ? 'selected': '' %> >Form one</option>
+              <option <%= student.class == 'Form Two' ? 'selected': '' %> >Form Two</option>
+              <option <%= student.class == 'Form Three' ? 'selected': '' %> >Form Three</option>
             </select>
             </br>
             <select name = "gender" class="form-control">
               <option selected>Choose Gender...</option>
-              <option>Male</option>
-              <option>Female</option>
+              <option  <%= student.gender == 'Male' ? 'selected': '' %>>Male</option>
+              <option  <%= student.gender == 'Female' ? 'selected': '' %>>Female</option>
             </select>
             </br>
                 <button type = "submit" class = "btn btn-success">Update Student</button>
