@@ -128,26 +128,33 @@ router.post("/forgot", (req, res, next) => {
            })
        },
        (token, employee) => {
+
            let smtpTransport = nodemailer.createTransport({
-               service : "GMAIL",
+           	   service: 'gmail',
+               host: 'smtp.gmail.com',
+               port: 587,
+               secure: false, 
+               requireTLS: true,
                auth : {
                    user : process.env.GMAIL_EMAIL,
-                   pass : process.env.GMAIL_PASSWORD
+                   pass : process.env.GMAIL_PASSWORD     
                },
                debug : true,
                logger : true
            });
 
+        
 
            let mailOptions = {
                to : employee.email,
-               from : "Treshold Buckler treshold001@gmail.com",
+               from : process.env.GMAIL_EMAIL,
                subject : "Recovery email from Glorious Shining Star International School",
                text : "Please click on the following link to recover your password: \n\n"+ 
                       "http://" + req.headers.host + "/reset/" + token + "\n\n" + 
                       "If you did not request this, please ignore this email."             
        };
          smtpTransport.sendMail(mailOptions, err => {
+         	
              req.flash("success_msg", "An email with further instructions has been sent to you. Please check your email.");
              res.redirect("/forgot");
          });
@@ -194,6 +201,8 @@ router.post("/reset/:token", (req, res) => {
                     PASS : process.env.GMAIL_PASSWORD 
                 }
             });
+
+
 
             let mailOptions = {
                 to : employee.email,
