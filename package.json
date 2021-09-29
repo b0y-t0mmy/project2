@@ -16,7 +16,7 @@
     "connect-flash": "^0.1.1",
     "crypto": "^1.0.1",
     "datatables": "^1.10.18",
-    "datatables.net": "^1.10.20",
+    "datatables.net": "^1.11.3",
     "datatables.net-bs4": "^1.10.20",
     "dotenv": "^8.2.0",
     "ejs": "^3.0.1",
